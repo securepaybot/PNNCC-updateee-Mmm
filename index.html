@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wallet Address</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f5f7fb;
+transition:.35s;
+}
+
+@media (prefers-color-scheme: dark){
+
+body{
+background:#0d1117;
+}
+
+.card{
+background:#161b22!important;
+color:white!important;
+}
+
+.address{
+background:#0d1117!important;
+border:1px solid #30363d!important;
+color:white!important;
+}
+
+.subtitle{
+color:#b8bcc5!important;
+}
+
+}
+
+.card{
+
+width:360px;
+padding:35px;
+border-radius:28px;
+background:white;
+box-shadow:0 15px 45px rgba(0,0,0,.08);
+text-align:center;
+
+}
+
+.logo{
+
+width:110px;
+height:110px;
+margin:auto;
+margin-bottom:25px;
+background:#ff7a00;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.logo svg{
+
+width:58px;
+height:58px;
+
+}
+
+h1{
+
+font-size:33px;
+margin-bottom:12px;
+
+}
+
+.subtitle{
+
+font-size:16px;
+color:#5d6470;
+margin-bottom:28px;
+
+}
+
+.address{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px;
+border-radius:16px;
+background:#f4f5f7;
+font-weight:600;
+margin-bottom:25px;
+
+}
+
+button{
+
+width:100%;
+padding:17px;
+border:none;
+border-radius:16px;
+background:#2563eb;
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.25s;
+
+}
+
+button:hover{
+
+transform:translateY(-2px);
+
+}
+
+button.copied{
+
+background:#16a34a;
+
+}
+
+.toast{
+
+position:fixed;
+bottom:35px;
+left:50%;
+transform:translateX(-50%) translateY(30px);
+background:#16a34a;
+color:white;
+padding:15px 25px;
+border-radius:14px;
+opacity:0;
+transition:.35s;
+font-weight:600;
+
+}
+
+.toast.show{
+
+opacity:1;
+transform:translateX(-50%) translateY(0);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="logo">
+
+<svg viewBox="0 0 100 100" fill="white">
+<path d="M18 20 L82 50 L18 80 Q8 80 8 70 V30 Q8 20 18 20Z"/>
+</svg>
+
+</div>
+
+<h1>Wallet Address</h1>
+
+<p class="subtitle">
+Send Bitcoin to the address below.
+</p>
+
+<div class="address">
+
+<span>1LGo8...1eXS</span>
+
+</div>
+
+<button id="copyButton">
+
+📋 Copy Address
+
+</button>
+
+</div>
+
+<div id="toast" class="toast">
+
+✅ Address copied successfully!
+
+</div>
+
+<script>
+
+const address="1LGo8dK82CwjxNuMbW75Vn7PCwzGGu1eXS";
+
+const button=document.getElementById("copyButton");
+
+const toast=document.getElementById("toast");
+
+button.onclick=async()=>{
+
+await navigator.clipboard.writeText(address);
+
+button.innerHTML="✅ Address Copied!";
+
+button.classList.add("copied");
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2000);
+
+setTimeout(()=>{
+
+button.innerHTML="📋 Copy Address";
+
+button.classList.remove("copied");
+
+},2200);
+
+};
+
+</script>
+
+</body>
+</html>
